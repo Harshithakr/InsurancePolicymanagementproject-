@@ -1,0 +1,130 @@
+create database insurance;
+use insurance;
+Database changed
+mysql> describe admin;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| aid      | varchar(255) | NO   | PRI | NULL    |       |
+| password | varchar(255) | YES  |     | NULL    |       |
+| username | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+ insert into admin(aid,password,username)
+    -> values(2,'Usha@12','Usha p');
+select * from  admin;
++-----+----------+----------+
+| aid | password | username |
++-----+----------+----------+
+| 1   | harsh@06 | harshi   |
+| 2   | Usha@12  | Usha p   |
++-----+----------+----------+
+desc approvals;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| user_name  | varchar(255) | NO   | PRI | NULL    |       |
+| date       | datetime(6)  | YES  |     | NULL    |       |
+| policy_id  | int          | YES  |     | NULL    |       |
+| request_id | int          | YES  |     | NULL    |       |
+| status     | varchar(255) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+ select * from approvals;
++-----------+----------------------------+-----------+------------+---------+
+| user_name | date                       | policy_id | request_id | status  |
++-----------+----------------------------+-----------+------------+---------+
+| madhu     | 2022-04-01 12:59:08.302000 |        10 |          8 | pending |
++-----------+----------------------------+-----------+------------+---------+
+desc approved;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| user_name  | varchar(255) | NO   | PRI | NULL    |       |
+| date       | datetime(6)  | YES  |     | NULL    |       |
+| policy_id  | int          | YES  |     | NULL    |       |
+| request_id | int          | YES  |     | NULL    |       |
+| status     | varchar(255) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+ select * from approved;
++------------+----------------------------+-----------+------------+----------+
+| user_name  | date                       | policy_id | request_id | status   |
++------------+----------------------------+-----------+------------+----------+
+| ashika     | 2022-04-01 00:15:27.653000 |         7 |       NULL | approved |
+| Chethan KR | 2022-04-01 00:11:09.720000 |         8 |       NULL | approved |
+| chinni     | 2022-03-30 21:17:16.654000 |         4 |       NULL | approved |
+| madhu      | 2022-04-01 12:59:17.876000 |         5 |          2 | Success  |
+| usha       | 2022-03-30 21:19:17.873000 |         3 |       NULL | approved |
++------------+----------------------------+-----------+------------+----------+
+ desc disapproved;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| user_name  | varchar(255) | NO   | PRI | NULL    |       |
+| date       | datetime(6)  | YES  |     | NULL    |       |
+| policy_id  | int          | YES  |     | NULL    |       |
+| request_id | int          | YES  |     | NULL    |       |
+| status     | varchar(255) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+select  * from disapproved;
++-----------+----------------------------+-----------+------------+-------------+
+| user_name | date                       | policy_id | request_id | status      |
++-----------+----------------------------+-----------+------------+-------------+
+| asha      | 2022-04-01 00:14:18.395000 |         8 |       NULL | disapproved |
+| madhu     | 2022-04-01 12:59:17.020000 |        10 |       NULL | disapproved |
+| mamata    | 2022-03-28 12:33:01.238000 |         2 |       NULL | disapproved |
+| usha      | 2022-03-30 21:20:58.753000 |         2 |       NULL | disapproved |
+| usha123t  | 2022-04-01 00:15:43.528000 |         7 |       NULL | disapproved |
++-----------+----------------------------+-----------+------------+-------------+
+desc policies;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| policy_id       | int          | NO   | PRI | NULL    |       |
+| amount          | double       | YES  |     | NULL    |       |
+| category        | varchar(255) | YES  |     | NULL    |       |
+| policy_name     | varchar(255) | YES  |     | NULL    |       |
+| tenure_in_years | int          | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+select *from policies;
++-----------+--------+----------+------------------+-----------------+
+| policy_id | amount | category | policy_name      | tenure_in_years |
++-----------+--------+----------+------------------+-----------------+
+|         1 |     20 | Bike     | Bheema           |               5 |
+|         2 | 500000 | general  | life insurance   |               5 |
+|         3 | 100000 | general  | health insurance |               8 |
+|         6 | 500000 | general  | property         |               5 |
+|         7 | 500000 | general  | crop insurance   |               2 |
+|         8 | 500000 | general  | two wheeler      |               8 |
++-----------+--------+----------+------------------+-----------------+
+desc user;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| user_name | varchar(255) | NO   | PRI | NULL    |       |
+| password  | varchar(255) | YES  |     | NULL    |       |
+| email     | varchar(255) | YES  |     | NULL    |       |
+| mobile    | bigint       | YES  |     | NULL    |       |
+| user_id   | int          | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+select *from user;
++------------+------------+-------------------------------+------------+---------+
+| user_name  | password   | email                         | mobile     | user_id |
++------------+------------+-------------------------------+------------+---------+
+| asha       | ashi@12    | asha@                         | 5789900900 |       0 |
+| ashika     | ashi@12    | ashi@gmail                    | 3445556778 |       0 |
+| bindu      | bindu@12   | bindu@mil                     | 7890000005 |       0 |
+| Chethan    | chetu@12   | chetupvg@gmail.com            | 7800000000 |       0 |
+| Chethan KR | chetu@12   | chetupvg@gmail.com            | 7800000000 |       0 |
+| chinni     | Chinni@99  | harshithapavagada99@gmail.com | 7892682393 |       0 |
+| harshi     | harsh@06   | usha@gmail.com                | 7829290624 |       0 |
+| Harshitha  | Chinni@99  | www@gmail.com                 | 7892682390 |       0 |
+| keerthi    | kerr       | keerti@12                     | 4577899000 |       0 |
+| madhu      | madhu1234  | mdhu123@123                   | 8888888888 |       0 |
+| mamata     | mam12@     | www@gmail.com                 | 7892682391 |       0 |
+| pallavi    | pallavi@12 | pall@12                       | 7892682393 |       0 |
+| usha       | ush@1234   | ushanp@gmail.com              | 7829290624 |       0 |
+| usha123t   | ush@1234   | ushm@gml                      | 7888888888 |       0 |      
+| ushachini  | ush@1234   | ushm@gml                      | 8888888888 |       0 |       
++------------+------------+-------------------------------+------------+---------+
+
+
